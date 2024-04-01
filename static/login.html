@@ -24,13 +24,15 @@
         const submit_button = document.querySelector('button');
 
         submit_button.addEventListener('click', (event) => {
+            console.log('Button clicked');
             event.preventDefault();
             console.log(username.value);
             const username_value = username.value;
             const password_value = password.value;
 
             // make a request to lochalhost:8080/auth
-            fetch('http://localhost:8080/auth', {
+            // fetch('http://localhost:10000/auth', { // ! NOTE: Disable this is local dev env
+            fetch('https://go-demo-d0yy.onrender.com/auth', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -39,7 +41,20 @@
                     username: username_value,
                     password: password_value
                 })
-            })
+            }).then(response => {
+                return response.json();
+            }).then(data => {
+                console.log('data:', data);
+                if (data.message == 'Login Successful!') {
+                    alert('Login Successful!');
+                    window.location.href = 'https://go-demo-d0yy.onrender.com/restricted';
+                } else {
+                    console.log('Invalid username or password'); 
+                    alert('Invalid username or password');
+                }
+            }).catch(error => {
+                console.log(error);
+            });
         });
 
     </script>
