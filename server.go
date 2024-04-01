@@ -9,7 +9,7 @@ import (
 func main() {
 
 	// fileServer := http.FileServer(http.Dir("./static"))
-	fmt.Printf("Sever listening at port 8080\n")
+	fmt.Printf("Sever listening at port 80\n")
 
 	// ? Create a home page handler
 	http.HandleFunc("/", homePageHandler)
@@ -21,7 +21,7 @@ func main() {
 	http.HandleFunc("/login", loginPageHandler)
 
 	// ? Start the server, if any error, console log it
-	if err := http.ListenAndServe(":8080", nil); err != nil {
+	if err := http.ListenAndServe(":80", nil); err != nil {
 		log.Fatal(err)
 	}
 }
