@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login page</title>
+</head>
+<body>
+   <form>
+         <label for="username">Username</label>
+         <input type="text" id="username" name="username">
+         <br>
+         <br>
+         <label for="password">Password</label>
+         <input type="password" id="password" name="password">
+         <br>
+         <br>
+         <button class="button" type="submit">Login</button>
+   </form>
+
+    <script>
+        const username = document.getElementById('username');
+        const password = document.getElementById('password');
+        const submit_button = document.querySelector('button');
+
+        submit_button.addEventListener('click', (event) => {
+            event.preventDefault();
+            console.log(username.value);
+            const username_value = username.value;
+            const password_value = password.value;
+
+            // make a request to lochalhost:8080/auth
+            fetch('http://localhost:8080/auth', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: username_value,
+                    password: password_value
+                })
+            })
+        });
+
+    </script>
+</body>
+</html>
