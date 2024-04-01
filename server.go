@@ -31,7 +31,7 @@ func main() {
 	http.HandleFunc("/restricted", restrictedPageHandler)
 
 	// ? Start the server, if any error, console log it
-	if err := http.ListenAndServe(":10000", nil); err != nil {
+	if err := http.ListenAndServe("0.0.0.0:1000", nil); err != nil {
 		log.Fatal(err)
 	}
 }
